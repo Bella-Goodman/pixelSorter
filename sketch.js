@@ -1,17 +1,23 @@
+//bubble sort method
+//least efficient but basic
+ let img;
+let sorted;
+let index = 0;
 let imagePixels;
-
+//
 function preload() {
-  img = loadImage('assets/cityscape.jpg');
+   img = loadImage(`assets/cityscape.jpg`)
 }
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(3102, 1742);
+  background(220);
+  image(img, 0, 0)
+  imageMode(CENTER);
 
-  sorted = createImage(img.width, img.height);
-  sorted = img.get();
 }
-
 function draw() {
+  //loadPixels();
   sorted.loadPixels();
 
   for (let i = 0; i < sorted.width - 1; i++) {
