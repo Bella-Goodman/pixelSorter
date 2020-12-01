@@ -6,14 +6,17 @@ let index = 0;
 let imagePixels;
 //
 function preload() {
-   img = loadImage(`assets/cityscape.jpg`)
+   img = loadImage(`assets/cityscaperesized.jpg`)
+  // sorted = img.get();
+  // sorted = createImage();
 }
 
 function setup() {
-  createCanvas(3102, 1742);
+  createCanvas(800, 800);
   background(220);
   image(img, 0, 0)
   imageMode(CENTER);
+
 
 }
 function draw() {
