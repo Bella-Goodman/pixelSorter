@@ -1,38 +1,37 @@
+let imagePixels;
 
-PImage img;
-//image variable
-Pimage sorted;
+function preload() {
+  img = loadImage('assets/cityscape.jpg');
+}
 
 function setup() {
   createCanvas(800, 800);
-  img = loadImage("cityscape.jpg");
-  sorted = createImage(img.width, img.height, RGB); //blank image
-  sorted.loadPixels();
-  // for (int i = 0; i < sorted.pixels.length; i++) {
-  //   sorted.pixels[i] = img.pixels[i];
-  // }
+
+  sorted = createImage(img.width, img.height);
   sorted = img.get();
-  sorted.loadPixels();
-  //Selection sort
-  for (int i = 0; i < sorted.pixels.length; i++) {
-    float record = -1;
-    int selectedPixel = i;
-    for (int j = 0; j < sorted.pixels.length; j++)
-      color pix = sorted.pixels[j];
-    float b = brightness(pix);
-    if (b > record) {
-      selectedPixel = j;
-      record = b;
-    }
-  }
-  //swap selected pixel with i
-  color temp = sorted.pixels[i];
-  sorted.pixels[i] = sorted.pixels[selectedPixel];
-  sorted.pixel[selectedPixel] = temp;
-}
-sorted.updatePixels();
 }
 
 function draw() {
-  background(220);
+  sorted.loadPixels();
+
+  for (let i = 0; i < sorted.width - 1; i++) {
+    for (let j = 0; j < sorted.height - 1; j++) {
+      let currentPixel = sorted.get(i, j);
+      let nextPixel = sorted.get(i+1, j);
+
+      let currentColor = color(currentPixel[0], currentPixel[1], currentPixel[2], currentPixel[3]);
+      let nextColor = color(nextPixel[0], nextPixel[1], nextPixel[2], nextPixel[3]);
+
+      if (hue(nextColor) > hue(currentColor)) {
+        sorted.set(i, j, nextColor);
+        sorted.set(i+1, j, currentColor);
+      }
+    }
+  }
+
+  sorted.updatePixels();
+
+  background(0);
+  image(img, 0, 0, 144, 144);
+  image(sorted, 144, 0, 144, 144);
 }
