@@ -21,11 +21,8 @@ function setup() {
 
 
 function draw() {
-  console.log(frameRate());
 
   sorted.loadPixels();
-
-  // Selection sort!
   for (let n = 0; n < 1; n++) {
     let record = -1;
     let selectedPixel = index;
@@ -43,7 +40,7 @@ function draw() {
       }
     }
 
-    // Swap selectedPixel with i
+    // Swap selected Pixel
     let temp = [];
     temp[0] = sorted.pixels[index];
     temp[1] = sorted.pixels[index + 1];
