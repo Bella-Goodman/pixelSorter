@@ -6,16 +6,18 @@ let index = 0;
 let imagePixels;
 //
 function preload() {
-   img = loadImage(`assets/cityscaperesized.jpg`)
+   img = loadImage(`assets/pixelsort_cat - Copy.jpg`)
 }
 
 function setup() {
+  //createCanvas(800, 800);
   createCanvas(img.width, img.height);
-  sorted = createImage(img.width, img.height);
+  //sorted = createImage(img.width, img.height);
+//sorted = createImage(100, 100);
   sorted = img.get();
   // background(220);
-  // image(img, 0, 0)
-  // imageMode(CENTER);
+image(img, 0, 0)
+// imageMode(CENTER);
 
 }
 
@@ -23,7 +25,7 @@ function setup() {
 function draw() {
 
   sorted.loadPixels();
-  for (let n = 0; n < 1; n++) {
+  for (let n = 0; n < 1; n++) { //look again
     let record = -1;
     let selectedPixel = index;
     for (let j = index; j < sorted.pixels.length; j += 4) {
@@ -33,7 +35,7 @@ function draw() {
         sorted.pixels[j + 2],
         sorted.pixels[j + 3]
       );
-      let b = hue(pix);
+      let b = brightness(pix);
       if (b > record) {
         selectedPixel = j;
         record = b;
